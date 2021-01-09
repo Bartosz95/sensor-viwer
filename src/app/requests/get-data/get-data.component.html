@@ -1,0 +1,8 @@
+<mat-card>
+    <mat-form-field>
+        <textarea matInput rows="2" [(ngModel)]="data"> </textarea>
+    </mat-form-field>
+</mat-card>
+<button (click)="onGetData()">Get data</button>
+<p>{{ data }}</p>
+<app-chart></app-chart>
