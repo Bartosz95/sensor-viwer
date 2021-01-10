@@ -1,5 +1,5 @@
 /*app.component.ts*/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
 import * as CanvasJS from './canvasjs.min';
 // var CanvasJS = require('./canvasjs.min');
@@ -9,47 +9,54 @@ import * as CanvasJS from './canvasjs.min';
     templateUrl: './chart.component.html',
     styleUrls: ['./chart.component.css']
 })
+
+
 export class Chart implements OnInit {
+
+    
+    @Input() chartTitle: string;
+    @Input() xAxisName: string;
+    @Input() dataURL: string;
+
 	ngOnInit() {
+
         let dataPoints = [];
-        let dpsLength = 0;
         let chart = new CanvasJS.Chart("chartContainer", {
-            exportEnabled: true,
             title:{
-                text:"Live Chart with Data-Points from External JSON"
+                text: this.chartTitle
             },
+            axisX:{
+                title : "Time"
+               },
+            axisX2:{
+                title : this.xAxisName
+               },
             data: [{
                 type: "spline",
                 dataPoints : dataPoints,
             }]
         });
         
-        $.getJSON("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=25&length=20&type=json&callback=?", function(data) {  
-            $.each(data, function(key, value){
-                dataPoints.push({x: value[0], y: parseInt(value[1])});
-            });
-            dpsLength = dataPoints.length;
+        $.getJSON(this.dataURL, function(data) {
+            data.reverse().forEach(value => dataPoints.push({y: value.temperature, label: value.time}));
             chart.render();
-            updateChart();
         });
 
-        function updateChart() {	
-            $.getJSON("https://canvasjs.com/services/data/datapoints.php?xstart=" + (dpsLength + 1) + "&ystart=" + (dataPoints[dataPoints.length - 1].y) + "&length=1&type=json&callback=?", function(data) {
-                $.each(data, function(key, value) {
-                    dataPoints.push({
-                    x: parseInt(value[0]),
-                    y: parseInt(value[1])
-                    });
-                    dpsLength++;
-                });
-                
-                if (dataPoints.length >  20 ) {
-                    dataPoints.shift();				
+        let updateChart = () => {	
+            $.getJSON(this.dataURL, function(data) {
+                const newValue = data[0];
+                const edgeValue = dataPoints[dataPoints.length-1].label;
+                if(newValue.time.localeCompare(edgeValue)) {
+                    dataPoints.push({y: newValue.temperature, label: newValue.time, x: dataPoints[dataPoints.length-1].x+1});
+                    dataPoints.shift();
+                    chart.render();
+                    console.log(dataPoints);
                 }
                 
-                chart.render();
-                setTimeout(function(){updateChart()}, 1000);
+                setTimeout(function(){updateChart()}, 30000);
             });
         }
+
+        updateChart();
     }
 }

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,17 +6,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './get-data.component.html',
   styleUrls: ['./get-data.component.css']
 })
-export class GetDataComponent implements OnInit {
+export class GetDataComponent  {
 
-  constructor() { }
+  chartTitle = "Temperature"
+  xAxisName = "degrees [C]"
+  dataURL ="http://localhost:3000/api/v1/temperature"
 
-  ngOnInit(): void {
-  }
-  data = '1'
-
-
-  onGetData() {
-    // alert('Data downloaded');
-    this.data = 'some data';
-  }
 }

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { GetDataComponent } from './requests/get-data/get-data.component';
 import { Chart } from './chart/chart.component';
 import { Header } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { Header } from './header/header.component';
     AppComponent,
     GetDataComponent,
     Chart,
-    Header
+    Header,
 
   ],
   imports: [
@@ -29,7 +30,8 @@ import { Header } from './header/header.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
