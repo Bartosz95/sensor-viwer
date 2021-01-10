@@ -10,7 +10,6 @@ import * as CanvasJS from './canvasjs.min';
     styleUrls: ['./chart.component.css']
 })
 
-
 export class Chart implements OnInit {
 
     

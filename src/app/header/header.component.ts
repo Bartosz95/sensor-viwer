@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./header.component.css']
 })
 export class Header {
-    
+    title = 'Sensor Dashboard'
 }

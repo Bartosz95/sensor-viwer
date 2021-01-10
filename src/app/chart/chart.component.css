@@ -1,7 +1,10 @@
 
 div{
-    height: 370px; 
+    height: 500px;
     width: 50%; 
     margin-left: auto;
     margin-right: auto;
+}
+#chartContainer {
+    
 }
