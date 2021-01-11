@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sensor-viwer';
+  dataURL = 'http://localhost:3000/api/v1'
 }

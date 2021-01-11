@@ -9,18 +9,16 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GetDataComponent } from './requests/get-data/get-data.component';
-import { Chart } from './chart/chart.component';
-import { Header } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Header } from './header/header.component';
+import { TemperatureChart } from './charts/temperature-chart.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GetDataComponent,
-    Chart,
     Header,
+    TemperatureChart
 
   ],
   imports: [
