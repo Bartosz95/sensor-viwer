@@ -3,28 +3,28 @@ import * as CanvasJS from './canvasjs.min';
 import { createChart, updateChart} from './charts-helpers';
  
 @Component({
-	selector: 'temperature-chart',
-    template: '<div id="temperature-chart"></div>',
+	selector: 'humidity-chart',
+    template: '<div id="humidity-chart"></div>',
     styleUrls: ['./chart.component.css']
 })
 
-export class TemperatureChart implements OnInit {
+export class HumidityChart implements OnInit {
 
     @Input() dataURL: string;
 
 	async ngOnInit() {
-        const dataName = 'temperature'
-        this.dataURL = this.dataURL + '/temperature'
+        const dataName = 'humidity'
+        this.dataURL = this.dataURL + '/humidity'
         let dataPoints = [];
-        let chart = new CanvasJS.Chart("temperature-chart", {
+        let chart = new CanvasJS.Chart("humidity-chart", {
             title:{
-                text: "Temperature"
+                text: "Humidity"
             },
             axisX:{
                 title : "Time"
                },
             axisX2:{
-                title : "[°C]"
+                title : "[%]"
                },
             data: [{
                 type: "spline",

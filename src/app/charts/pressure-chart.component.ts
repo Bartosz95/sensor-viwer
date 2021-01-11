@@ -3,28 +3,30 @@ import * as CanvasJS from './canvasjs.min';
 import { createChart, updateChart} from './charts-helpers';
  
 @Component({
-	selector: 'temperature-chart',
-    template: '<div id="temperature-chart"></div>',
+	selector: 'pressure-chart',
+    template: '<div id="pressure-chart"></div>',
     styleUrls: ['./chart.component.css']
 })
 
-export class TemperatureChart implements OnInit {
+export class PressureChart implements OnInit {
 
     @Input() dataURL: string;
 
 	async ngOnInit() {
-        const dataName = 'temperature'
-        this.dataURL = this.dataURL + '/temperature'
+
+        const dataName = 'pressure'
+        this.dataURL = this.dataURL + '/pressure'
+
         let dataPoints = [];
-        let chart = new CanvasJS.Chart("temperature-chart", {
+        let chart = new CanvasJS.Chart("pressure-chart", {
             title:{
-                text: "Temperature"
+                text: "Pressure"
             },
             axisX:{
                 title : "Time"
                },
             axisX2:{
-                title : "[°C]"
+                title : "[hPa]"
                },
             data: [{
                 type: "spline",
